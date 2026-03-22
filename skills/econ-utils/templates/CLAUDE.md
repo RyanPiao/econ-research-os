@@ -41,3 +41,4 @@ This project uses econ-research-os skills. Key commands:
 - ALWAYS export tables to BOTH .tex and .md
 - ALWAYS set random seeds in analysis code
 - Commit after every completed task with descriptive message
+- NEVER ADD CLAUDE CO-AUTHOR CREDITS OR "GENERATED WITH CLAUDE CODE" FOOTERS

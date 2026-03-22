@@ -26,27 +26,80 @@ Think → Discover → Ingest → Store → Analyze → Synthesize → Write →
 
 ## Quickstart (5 minutes)
 
-### 1. Clone and install
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/[your-username]/econ-research-os.git
 cd econ-research-os
-
-# Copy skills to your Claude Code skills directory
-cp -r skills/* ~/.claude/skills/
-
-# Install system dependencies
-brew install poppler ripgrep uv        # macOS
-# sudo apt install poppler-utils ripgrep  # Linux
-
-# Install Quarto (for book compilation)
-brew install --cask quarto             # macOS
-
-# Install Python dependencies
-pip install -r requirements.txt
 ```
 
-### 2. Install MCP servers
+### 2. Copy skills to Claude Code
+
+The skills directory must be copied into `~/.claude/skills/`. Pick your platform:
+
+**macOS / Linux:**
+```bash
+mkdir -p ~/.claude/skills
+cp -R skills/* ~/.claude/skills/
+```
+
+**Windows (PowerShell):**
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills"
+Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.claude\skills\"
+```
+
+**Windows (Git Bash / WSL):**
+```bash
+mkdir -p ~/.claude/skills
+cp -R skills/* ~/.claude/skills/
+```
+
+> **Tip:** If `cp -r` (lowercase r) doesn't copy subdirectories on your macOS version, use `cp -R` (uppercase R) instead. Both are shown above with `-R` for maximum compatibility.
+
+### 3. Install system dependencies
+
+**macOS (Homebrew):**
+```bash
+brew install poppler ripgrep uv
+brew install --cask quarto
+```
+
+**Windows:**
+1. Install [Python 3.10+](https://www.python.org/downloads/) — check "Add python to PATH" during install
+2. Install [Quarto](https://quarto.org/docs/get-started/) — download the Windows installer
+3. Install [ripgrep](https://github.com/BurntSushi/ripgrep/releases) — download the `.exe` or use `winget install BurntSushi.ripgrep`
+4. Install [poppler](https://github.com/oschwartz10612/poppler-windows/releases/) — download, extract, and add the `bin/` folder to your PATH
+5. Install uv (Python package manager):
+   ```powershell
+   powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+
+**Linux (Debian/Ubuntu):**
+```bash
+sudo apt install poppler-utils ripgrep
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# Install Quarto: https://quarto.org/docs/get-started/
+```
+
+### 4. Install Python dependencies
+
+Use whichever command works on your system (try them in this order):
+
+```bash
+# Option A: uv (recommended — fastest, auto-handles virtual environments)
+uv pip install -r requirements.txt
+
+# Option B: python3 -m pip (if uv is not installed)
+python3 -m pip install -r requirements.txt
+
+# Option C: python -m pip (Windows often uses "python" instead of "python3")
+python -m pip install -r requirements.txt
+```
+
+> **"pip not found"?** This usually means Python isn't on your PATH, or you need to use `python -m pip` instead of bare `pip`. On Windows, make sure you checked "Add python to PATH" during installation. You can verify with `python --version`.
+
+### 5. Install MCP servers
 
 ```bash
 # Semantic Scholar — academic paper search (works without API key)
@@ -58,12 +111,14 @@ claude mcp add semantic-scholar -s user -- \
 claude mcp add github -s user -- \
   npx -y @modelcontextprotocol/server-github
 
-# Filesystem — work across directories
+# Filesystem — work across directories (adjust paths to your own)
 claude mcp add filesystem -s user -- \
   npx -y @modelcontextprotocol/server-filesystem ~/projects ~/papers
 ```
 
-### 3. Create your first project
+> **Windows note:** Replace `~/projects` and `~/papers` with your actual paths, e.g., `C:/Users/yourname/projects`. Use forward slashes.
+
+### 6. Create your first project
 
 ```bash
 cd ~/your-project-directory

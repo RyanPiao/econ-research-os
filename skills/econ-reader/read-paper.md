@@ -170,6 +170,57 @@ echo "Paper snapshot saved to ./literature/[filename].md"
 
 If batch processing, also generate `./literature/_index.md` with a table of all papers.
 
+## Step 9: Auto-index to RAG (if knowledge-rag MCP is available)
+
+After saving the paper snapshot, check if the knowledge-rag MCP server is connected. If it is, use the add_document or reindex tool to index the new paper snapshot file.
+
+If knowledge-rag is not connected, skip this step silently — the system works without RAG, just with slower file-based search.
+
+## Step 10: Auto-commit and push to Git
+
+After saving the paper snapshot and updating references.bib, automatically commit and push to GitHub.
+
+### Procedure
+
+1. Navigate to the knowledge base:
+```bash
+cd ~/econ-knowledge-base
+```
+
+2. Stage the new/updated files:
+```bash
+git add "literature/[AuthorYear-Title].md"
+git add references.bib
+git add notes/ 2>/dev/null
+```
+
+3. Commit with a descriptive message using metadata from the paper snapshot YAML frontmatter:
+```bash
+git commit -m "Add: [Authors] ([Year]) - [Short Title]
+
+Method: [methodology from YAML]
+Tags: [tags from YAML]
+Relevance: [relevance from YAML]/5
+Analyzed: [date_analyzed from YAML]"
+```
+
+4. Push to GitHub:
+```bash
+git push origin main
+```
+
+5. If git push fails (no remote configured, authentication issue, network error), warn the user:
+> "Paper snapshot saved and committed locally. Push failed — run `git push origin main` manually when ready."
+
+6. If git push succeeds, confirm:
+> "Paper snapshot saved → indexed to RAG → committed → pushed to GitHub."
+
+### Rules
+- ALWAYS run this step after saving a paper snapshot. Do not skip.
+- If the knowledge base directory is not a git repo, warn the user and suggest running `git init` and setting up a remote.
+- If there are other unstaged changes in the repo, only stage the files from THIS read operation — do not stage unrelated changes.
+- The commit message must use the actual paper metadata, not placeholder text.
+
 ---
 
 ## Accepted Input Formats (Read Mode)

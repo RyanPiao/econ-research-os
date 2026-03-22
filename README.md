@@ -29,7 +29,7 @@ Think → Discover → Ingest → Store → Analyze → Synthesize → Write →
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/[your-username]/econ-research-os.git
+git clone https://github.com/RyanPiao/econ-research-os.git
 cd econ-research-os
 
 # Copy skills to your Claude Code skills directory

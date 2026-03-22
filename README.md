@@ -39,23 +39,26 @@ The skills directory must be copied into `~/.claude/skills/`. Pick your platform
 
 **macOS / Linux:**
 ```bash
+rm -rf ~/.claude/skills/econ-*    # remove any previous install
 mkdir -p ~/.claude/skills
 cp -R skills/* ~/.claude/skills/
 ```
 
 **Windows (PowerShell):**
 ```powershell
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\econ-*" -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills"
 Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.claude\skills\"
 ```
 
 **Windows (Git Bash / WSL):**
 ```bash
+rm -rf ~/.claude/skills/econ-*
 mkdir -p ~/.claude/skills
 cp -R skills/* ~/.claude/skills/
 ```
 
-> **Tip:** If `cp -r` (lowercase r) doesn't copy subdirectories on your macOS version, use `cp -R` (uppercase R) instead. Both are shown above with `-R` for maximum compatibility.
+> **"Not a directory" error?** This means a previous install left *files* where directories should be. The `rm -rf ~/.claude/skills/econ-*` line above fixes this. Make sure to run all three lines, not just `cp`.
 
 ### 3. Install system dependencies
 
@@ -84,20 +87,25 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ### 4. Install Python dependencies
 
-Use whichever command works on your system (try them in this order):
+Modern Python (3.12+) blocks system-wide pip installs. You **must** use a virtual environment — this is normal and expected.
 
+**With uv (recommended — already installed in step 3):**
 ```bash
-# Option A: uv (recommended — fastest, auto-handles virtual environments)
+uv venv                          # creates .venv/ in current directory
+source .venv/bin/activate        # macOS / Linux
+# .venv\Scripts\activate         # Windows (PowerShell)
 uv pip install -r requirements.txt
-
-# Option B: python3 -m pip (if uv is not installed)
-python3 -m pip install -r requirements.txt
-
-# Option C: python -m pip (Windows often uses "python" instead of "python3")
-python -m pip install -r requirements.txt
 ```
 
-> **"pip not found"?** This usually means Python isn't on your PATH, or you need to use `python -m pip` instead of bare `pip`. On Windows, make sure you checked "Add python to PATH" during installation. You can verify with `python --version`.
+**Without uv (fallback):**
+```bash
+python3 -m venv .venv            # or "python -m venv .venv" on Windows
+source .venv/bin/activate        # macOS / Linux
+# .venv\Scripts\activate         # Windows (PowerShell)
+pip install -r requirements.txt
+```
+
+> **Tip:** You'll need to run `source .venv/bin/activate` (or `.venv\Scripts\activate` on Windows) each time you open a new terminal before using the Python packages.
 
 ### 5. Install MCP servers
 

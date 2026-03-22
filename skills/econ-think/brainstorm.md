@@ -36,10 +36,7 @@ causal inference, etc.]
 
 ## Output Conventions
 - All outputs saved as markdown in the appropriate project directory
+- Create `./projects/[project-name]/` automatically if it doesn't exist
 - All prompts use economics-specific terminology and conventions
 - Cross-reference with existing ./literature/ files when available
-
-## Example Invocation
-```bash
-/brainstorm minimum wage effects on small business formation
-```
+- Include JEL codes in all literature-related prompts

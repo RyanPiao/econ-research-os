@@ -1,24 +1,14 @@
-# MCP Server Setup
+# MCP Server Setup Guide
 
 ## What are MCP servers?
 
-MCP (Model Context Protocol) servers are external tools that extend Claude Code's capabilities beyond reading and writing local files. They let Claude interact with APIs, databases, and web services directly from within a conversation.
+MCP (Model Context Protocol) servers extend Claude Code's capabilities by connecting it to external tools and data sources. In econ-research-os, MCP servers provide the bridge between Claude and academic databases, file systems, and version control. Without them, skills like `/paper-search` and `/citation-chase` would have no way to query Semantic Scholar or access files outside the working directory.
 
-For econ-research-os, MCP servers provide three key capabilities:
+Each MCP server runs as a local process that Claude Code communicates with. You install them once at the user level, and they are available across all your projects.
 
-- **Academic paper search** via Semantic Scholar's API
-- **GitHub integration** for repository management and collaboration
-- **Cross-directory file access** for working across multiple project folders
+## Semantic Scholar MCP
 
-Without MCP servers installed, you can still use most skills (reading, writing, analysis, verification), but you will not be able to search for papers directly from Claude Code.
-
-## Installation
-
-Run these commands in your terminal (not inside Claude Code).
-
-### Semantic Scholar (strongly recommended)
-
-Provides academic paper search, citation data, and metadata lookup. This is the backbone of the Discover stage (`/paper-search`, `/citation-chase`, `/deep-search`).
+This is the most important MCP server for the system. It powers `/paper-search`, `/citation-chase`, and `/deep-search` by providing direct access to the Semantic Scholar academic database.
 
 ```bash
 claude mcp add semantic-scholar -s user -- \
@@ -26,48 +16,98 @@ claude mcp add semantic-scholar -s user -- \
   semantic-scholar-mcp
 ```
 
-Works without an API key. If you have a Semantic Scholar API key, you can set it as an environment variable for higher rate limits:
+**Notes:**
+- Works without an API key for moderate usage (up to ~100 requests per 5 minutes).
+- For heavier usage, request a free API key at [Semantic Scholar API](https://www.semanticscholar.org/product/api) and set the environment variable `S2_API_KEY`.
+- Provides paper search, citation graph traversal, author lookup, and paper metadata.
 
-```bash
-export SEMANTIC_SCHOLAR_API_KEY="your-key-here"
-```
+## GitHub MCP
 
-### GitHub (optional)
-
-Enables pushing repos, managing pull requests, and other GitHub operations from within Claude Code.
+Enables Claude Code to interact with GitHub repositories: push code, create pull requests, and manage issues directly from the conversation.
 
 ```bash
 claude mcp add github -s user -- \
   npx -y @modelcontextprotocol/server-github
 ```
 
-Requires a GitHub personal access token set via `GITHUB_TOKEN`.
+**Notes:**
+- Requires a GitHub personal access token. Set `GITHUB_PERSONAL_ACCESS_TOKEN` in your environment.
+- Optional for the research workflow. Most useful if you collaborate via GitHub or want Claude to manage git operations beyond local commits.
 
-### Filesystem (optional)
+## Filesystem MCP
 
-Allows Claude to read and write files across multiple directories, useful if your papers, data, and project live in different locations.
+Allows Claude Code to read and write files outside the current working directory. Useful when your papers, data, and project live in different locations.
 
 ```bash
 claude mcp add filesystem -s user -- \
   npx -y @modelcontextprotocol/server-filesystem ~/projects ~/papers
 ```
 
-Adjust the paths (`~/projects ~/papers`) to match your own directory structure.
+**Notes:**
+- The paths at the end (`~/projects ~/papers`) define which directories the server can access. Adjust these to match your setup.
+- Optional but convenient if you keep a central `~/papers/` directory separate from your project.
 
-## API keys
+## Knowledge-RAG MCP (Optional)
 
-| Server | Key required? | How to get one |
-|--------|--------------|----------------|
-| Semantic Scholar | No (optional for higher rate limits) | [semanticscholar.org/product/api](https://www.semanticscholar.org/product/api) |
-| GitHub | Yes (`GITHUB_TOKEN`) | [github.com/settings/tokens](https://github.com/settings/tokens) |
-| Filesystem | No | N/A |
+> **Optional, recommended when knowledge base exceeds 30 papers.**
 
-## Verifying installation
+When your `literature/` directory grows beyond ~30 paper snapshots, the context window becomes the bottleneck. A knowledge-RAG MCP server indexes your markdown knowledge base and lets Claude retrieve relevant snippets on demand rather than loading everything into context.
 
-After adding MCP servers, restart Claude Code and run:
+This is an area of active development. Future documentation will cover:
+- Recommended RAG server implementations compatible with Claude Code
+- Indexing configuration for markdown paper snapshots
+- Query patterns that work well with the econ-research-os knowledge base structure
+- Performance tuning for large literature collections (100+ papers)
+
+For now, the system works well without RAG for projects with up to ~30 papers in the knowledge base.
+
+## Troubleshooting
+
+### MCP server not connecting
+
+**Symptom:** Claude Code does not recognize MCP tools, or skills like `/paper-search` report that Semantic Scholar is unavailable.
+
+**Steps to diagnose:**
+1. Check that the server is registered: `claude mcp list`
+2. Verify the server process is running. MCP servers start on demand, so try invoking a skill that uses it.
+3. Check that `uvx` (for Semantic Scholar) or `npx` (for GitHub/Filesystem) is installed and on your PATH.
+4. Remove and re-add the server: `claude mcp remove semantic-scholar` then re-run the add command.
+
+### Rate limits
+
+**Symptom:** Paper searches return errors or empty results after working initially.
+
+**Causes and fixes:**
+- Semantic Scholar enforces rate limits on unauthenticated requests (~100 per 5 minutes). If you hit this, wait a few minutes or add an API key.
+- Set `S2_API_KEY` for higher rate limits: `export S2_API_KEY=your_key_here` (add to your shell profile for persistence).
+- GitHub MCP has its own rate limits tied to your personal access token tier.
+
+### API key setup
+
+**Where to set keys:**
+
+| Service | Environment variable | How to get one |
+|---------|---------------------|----------------|
+| Semantic Scholar | `S2_API_KEY` | [semanticscholar.org/product/api](https://www.semanticscholar.org/product/api) (free) |
+| GitHub | `GITHUB_PERSONAL_ACCESS_TOKEN` | GitHub Settings > Developer settings > Personal access tokens |
+
+Add these to your shell profile (`~/.bashrc`, `~/.zshrc`, or equivalent) so they persist across sessions:
 
 ```bash
-claude mcp list
+export S2_API_KEY="your_semantic_scholar_key"
+export GITHUB_PERSONAL_ACCESS_TOKEN="your_github_token"
 ```
 
-You should see your installed servers listed. If a server fails to connect, check that the required dependencies (`uvx`, `npx`) are installed and that any required API keys are set.
+### Node.js or Python not found
+
+The GitHub and Filesystem MCP servers require Node.js (for `npx`). The Semantic Scholar MCP server requires Python (for `uvx`). If either is missing:
+
+```bash
+# macOS
+brew install node
+brew install uv
+
+# Linux
+sudo apt install nodejs npm
+pip install uv
+```

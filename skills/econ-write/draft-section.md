@@ -63,3 +63,23 @@ Methodology encoded from: McCloskey (Economical Writing), Cochrane (Writing Tips
 4. **Output**: Save the drafted section to `./projects/[project]/drafts/[section-name].qmd` (or `.md` if not using Quarto)
 
 5. **Post-draft check**: Run the quick self-check (see /self-review) on the drafted section before confirming.
+
+## Example Invocations
+```bash
+# Draft a section from notes
+/draft-section "Difference-in-differences identification" --type textbook
+
+# Write a full chapter
+/book-chapter 4 "Difference-in-Differences" --from-outline
+
+# Compile
+/compile-draft --format pdf
+/compile-draft --chapter 4 --format html
+
+# Self-review
+/self-review ./projects/mybook/chapters/04-did.qmd
+/self-review --auto-fix ./projects/mybook/chapters/04-did.qmd
+
+# Scaffold a new book project
+/compile-draft --scaffold "Applied Data Analytics in Economics"
+```

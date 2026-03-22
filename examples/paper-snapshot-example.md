@@ -4,183 +4,190 @@ title: "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in 
 authors: [David Card, Alan B. Krueger]
 year: 1994
 journal: "American Economic Review"
-doi: "10.1257/aer.84.4.772"
-tags: [literature_note, labor, minimum-wage, diff-in-diff, natural-experiment, employment]
+doi: "10.2307/2118030"
+tags: [literature_note, minimum-wage, employment, diff-in-diff, natural-experiment, labor]
 status: detailed
 relevance: 5
 methodology: diff-in-diff
-jel_codes: [J23, J31, J38]
+jel_codes: [J31, J38, C21]
 date_analyzed: 2026-03-22
 ---
 
-# Card & Krueger (1994) — Minimum Wages and Employment
+# Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania
+
+**Card and Krueger (1994)** | American Economic Review 84(4): 772-793
+
+---
 
 ## Executive Summary
 
-### Research Question
-Does an increase in the minimum wage reduce employment in the fast-food industry?
+Card and Krueger exploit New Jersey's 1992 minimum wage increase (from $4.25 to $5.05) as a natural experiment, comparing employment changes in fast-food restaurants in New Jersey (treated) with those in eastern Pennsylvania (control). Using a telephone survey of 410 restaurants conducted before and after the policy change, they find **no evidence that the minimum wage increase reduced employment** -- and point estimates suggest a small positive effect. This paper fundamentally challenged the competitive labor market consensus that minimum wage floors necessarily reduce employment, becoming one of the most cited and debated papers in labor economics.
 
-### Main Answer
-No — employment in New Jersey fast-food restaurants actually increased slightly relative to Pennsylvania restaurants after New Jersey raised its minimum wage, contradicting the standard competitive labor market prediction.
-
-### Evidence Type
-Quasi-experiment (natural experiment)
-
-### Identification Strategy
-New Jersey raised its minimum wage from $4.25 to $5.05 per hour on April 1, 1992; neighboring Pennsylvania did not. Card and Krueger exploit this policy discontinuity using a difference-in-differences design: they compare employment changes in fast-food restaurants in New Jersey (treatment) versus eastern Pennsylvania (control) before and after the NJ minimum wage increase. The key identifying assumption is that employment trends in NJ and PA fast-food restaurants would have been parallel in the absence of the minimum wage increase.
-
-### Headline Result
-The estimated effect of the NJ minimum wage increase on full-time equivalent (FTE) employment is +2.76 FTEs per restaurant (SE = 1.36), implying a 13% relative increase in employment in NJ versus PA. This result is statistically significant at the 5% level and is the opposite sign predicted by the textbook competitive model.
-
-### Bottom Line
-This paper fundamentally disrupted the consensus that minimum wage increases reduce employment, providing the most influential piece of evidence for the "new minimum wage research." Its credibility rests on the natural experiment design, but the result is limited to one state, one industry, and one modest minimum wage increase. It revived interest in monopsony models of labor markets and launched decades of follow-up research.
+**One-sentence finding**: A $0.80 (18.8%) increase in New Jersey's minimum wage produced no statistically significant decline in fast-food employment relative to neighboring Pennsylvania.
 
 ---
 
 ## Knowledge Distillation
 
 ### Paper Snapshot
-- **Question:** Does an increase in the state minimum wage reduce employment in the fast-food industry?
-- **Answer:** No. Employment in New Jersey fast-food restaurants increased relative to Pennsylvania after the NJ minimum wage rise, contradicting the competitive model prediction.
-- **Method:** Difference-in-differences comparing FTE employment at fast-food restaurants in NJ (treatment) and eastern PA (control) before (Feb/Mar 1992) and after (Nov/Dec 1992) NJ's minimum wage increase from $4.25 to $5.05. Data collected via phone surveys of 410 Burger King, KFC, Wendy's, and Roy Rogers restaurants. Specifications include OLS with and without controls for chain, ownership type, and region.
-- **Key Table/Figure:** Table 3 — Shows the main DiD result. Row 1 reports the change in mean FTE employment: NJ increased by +0.59, PA decreased by -2.16, yielding a DiD estimate of +2.76. This is the paper's headline result.
-- **Limitations (authors'):** (1) Short time horizon — only 8 months between surveys; long-run effects could differ. (2) Phone survey data may introduce measurement error in employment counts. (3) Results are specific to fast food; may not generalize to other industries. (4) PA may not be a perfect control if local economic conditions diverged.
-- **Limitations (mine):** (1) No formal pre-trends test — only two time periods, so parallel trends is assumed, not tested. (2) FTE is constructed from part-time and full-time headcounts using a specific formula; results may be sensitive to this construction. (3) Attrition between survey waves (about 7%) is not extensively analyzed. (4) Potential for Hawthorne effects — managers knew they were being surveyed. (5) The magnitude (+13%) is large for such a modest minimum wage increase, which raises questions about whether the PA control group was experiencing an independent negative shock.
-- **Use for me:** Canonical example of a natural experiment / DiD in labor economics. Essential citation for any minimum wage literature review. Useful teaching example for identification strategy, and for illustrating how an empirical result can challenge established theory.
+
+| Parameter | Detail |
+|---|---|
+| **Research question** | Does an increase in the minimum wage reduce employment in the fast-food industry? |
+| **Object of study** | Fast-food restaurants (Burger King, KFC, Wendy's, Roy Rogers) in NJ and eastern PA |
+| **Method** | Difference-in-differences: compare employment changes in NJ restaurants (treated by the wage increase) vs. PA restaurants (control) before and after April 1, 1992 |
+| **Identification** | The NJ minimum wage increase was a state-level legislative change unrelated to local labor market conditions; PA provides a geographically adjacent control |
+| **Main claim** | The minimum wage increase did not reduce employment in NJ fast-food restaurants; if anything, employment rose slightly relative to PA |
+| **Scope limits** | Fast-food industry only; one state; one wage increase ($4.25 to $5.05); short-run effects (8 months post-treatment) |
+| **Key assumption** | Absent the minimum wage increase, employment trends would have been parallel in NJ and PA fast-food restaurants |
 
 ### Dataset Card
-- **Unit of observation:** Fast-food restaurant (store level)
-- **N:** 410 restaurants (331 in NJ, 79 in eastern PA) in wave 1; 410 re-interviewed in wave 2 (371 successfully re-contacted)
-- **Sample restrictions:** Burger King, KFC, Wendy's, and Roy Rogers restaurants within NJ and a set of eastern PA counties (within reasonable commuting distance of the NJ border). Franchisee-owned and company-owned included.
-- **Time period:** Wave 1: February–March 1992 (before NJ increase); Wave 2: November–December 1992 (7–8 months after)
-- **Key variables:**
-  - Dependent: FTE employment = full-time workers + 0.5 * part-time workers (constructed from manager-reported headcounts)
-  - Treatment/Key IV: NJ indicator (= 1 if restaurant is in New Jersey)
-  - Controls: chain dummies (BK, KFC, Wendy's, Roy Rogers), company-owned indicator, region within NJ (shore, central, north, south)
-- **Data source:** Original phone survey conducted by the authors. Managers were called and asked about current employment, wages, prices, and hours.
-- **Missingness handling:** 39 restaurants (9.5%) could not be re-contacted in wave 2 due to closures, refusals, or inability to reach a manager. Authors conduct attrition analysis and find no differential attrition between NJ and PA.
 
-### Regression Table Decode
-**Table 3: Average Employment Per Store Before and After the Rise in NJ Minimum Wage**
-| Element | Detail |
+| Parameter | Detail |
 |---|---|
-| Dependent variable | FTE employment per store (full-time + 0.5 * part-time) |
-| Key IV | NJ indicator (treatment state) |
-| Baseline estimate | DiD = +2.76 FTE, SE = 1.36, p < 0.05 |
-| Plain-language | New Jersey restaurants gained roughly 2.8 more full-time equivalent employees per store relative to Pennsylvania restaurants after the minimum wage increase, holding pre-treatment levels constant. This represents approximately a 13% relative employment increase. |
-| Controls / FE | None in baseline specification (Table 3 is a simple 2x2 DiD of means). Table 4 adds chain dummies, company-ownership indicator, and NJ region controls. |
-| SE clustering | Standard errors not clustered in Table 3 (simple comparison of means). Regression specifications in Table 4 report heteroskedasticity-robust SEs. |
-| N | 410 stores (wave 1), 371 stores (wave 2 panel) |
-| R² | Not reported for the means comparison; R² = 0.07–0.10 for regression specifications in Table 4 |
+| **Unit of observation** | Fast-food restaurant |
+| **N** | 410 restaurants (331 NJ, 79 PA) in wave 1; 410 in wave 2 (with some attrition and replacement) |
+| **Sample restrictions** | Burger King, KFC, Wendy's, and Roy Rogers restaurants within NJ and eastern PA (within a reasonable commuting distance of the NJ border) |
+| **Time period** | Wave 1: February/March 1992 (before the April 1 increase); Wave 2: November/December 1992 (7-8 months after) |
+| **Dependent variable** | Full-time equivalent (FTE) employment = full-time workers + 0.5 * part-time workers |
+| **Treatment variable** | Location in New Jersey (binary: NJ = 1, PA = 0) |
+| **Key controls** | Chain indicator (4 chains), company-owned vs. franchise, region within NJ |
+| **Data source** | Original telephone survey conducted by the authors |
+| **Missingness** | ~6% of wave 1 restaurants could not be reached in wave 2; replaced with new sample from same chains/areas; results robust to excluding replacements |
+| **Summary statistics** | Pre-treatment mean FTE: NJ = 20.4, PA = 23.3; starting wage: NJ = $4.61, PA = $4.63 |
 
-**Table 4, Column (iii): Regression-Adjusted DiD**
-| Element | Detail |
+### Regression Table Decode: Main Employment Result (Table 3)
+
+| Parameter | Detail |
 |---|---|
-| Dependent variable | Change in FTE employment (wave 2 minus wave 1) |
-| Key IV | NJ dummy |
-| Baseline estimate | β = +2.30 FTE, SE = 1.19, p ≈ 0.054 |
-| Plain-language | After controlling for chain type, ownership, and region, NJ restaurants still gained about 2.3 more FTEs than PA restaurants, though this estimate is marginally significant. |
-| Controls / FE | Chain dummies (4), company-owned indicator, region within NJ (4 categories) |
-| SE clustering | Robust standard errors |
-| N | 357 stores with complete data |
-| R² | 0.10 |
+| **Dependent variable** | Change in FTE employment (wave 2 minus wave 1) |
+| **Key independent variable** | NJ dummy (= 1 if restaurant is in New Jersey) |
+| **Baseline coefficient** | +2.76 FTE (SE = 1.36) in the simple difference-in-differences |
+| **Significance** | Statistically significant at the 5% level (t = 2.03) |
+| **Identification** | Comparison of mean employment changes: NJ restaurants gained 0.59 FTE on average while PA restaurants lost 2.16 FTE; the DiD estimate is the difference of these changes |
+| **Controls** | Specifications with and without chain dummies and ownership status; results robust across specifications |
+| **Fixed effects** | None (two-period, two-group design) |
+| **Standard errors** | Conventional OLS standard errors; no clustering (single policy shock) |
+| **Sample** | 410 restaurants in main specification; 357 in balanced panel (no replacements) |
+| **Robustness** | Result survives: (a) balanced panel only, (b) controlling for chain and ownership, (c) using proportional rather than level changes, (d) excluding restaurants with imputed data, (e) comparing within-NJ variation by initial wage gap |
 
-### Robustness Assessment
-| Check | Result | Survives? |
-|---|---|---|
-| Within-NJ variation (low- vs. high-wage stores) | Stores initially at or near the old minimum wage (most affected by increase) show larger employment gains | Yes — strengthens the result |
-| Balanced sample (only stores in both waves) | DiD estimate remains positive and similar in magnitude | Yes |
-| Alternative FTE definitions | Using full-time only or total headcount instead of the 0.5 weighting gives qualitatively similar results | Yes (magnitudes vary) |
-| Controlling for chain, ownership, region | Estimate changes from 2.76 to 2.30 but remains positive | Yes (marginally significant) |
-| Prices (pass-through test) | NJ restaurants raised prices of a standard meal by ~4% relative to PA — consistent with cost pass-through rather than employment reduction | Yes — supports monopsony / price pass-through interpretation |
-| BLS administrative data (follow-up) | Neumark and Wascher (2000) challenged results using payroll data, finding negative effects; Card and Krueger (2000) responded with BLS data showing null/positive effects. Disagreement persists. | Contested |
+**Plain-language interpretation**: Fast-food restaurants in New Jersey, which were forced to raise wages by the minimum wage increase, added approximately 2.8 more FTE workers than comparable Pennsylvania restaurants over the same period. This contradicts the standard prediction that employment should fall when wages are forced above the market-clearing level.
 
-### Atomic Notes
-
-- **Claim/Concept:** A modest minimum wage increase need not reduce employment in low-wage industries.
-- **Evidence:** Card & Krueger 1994, Table 3 — DiD estimate of +2.76 FTEs (SE = 1.36).
-- **My Commentary:** The result directly contradicts the textbook supply-and-demand prediction. The key question is whether this reflects monopsony power, measurement error, or an idiosyncratic PA downturn.
-- **Tags:** [minimum-wage, employment, natural-experiment]
-
-- **Claim/Concept:** Phone survey data can be used to construct credible employment measures for quasi-experimental analysis.
-- **Evidence:** Card & Krueger 1994, Section II — detailed description of survey instrument, response rates, and FTE construction.
-- **My Commentary:** The phone survey approach was innovative but generated controversy. Neumark and Wascher (2000) argued payroll data told a different story. This debate highlights how measurement choices can drive empirical conclusions.
-- **Tags:** [measurement, survey-data, employment-measurement]
-
-- **Claim/Concept:** Within-treatment-group variation can strengthen a DiD design by providing a dose-response check.
-- **Evidence:** Card & Krueger 1994, Table 5 — comparison of initially low-wage vs. high-wage NJ stores. Stores most affected by the minimum wage increase (those previously paying near $4.25) show the largest employment gains.
-- **My Commentary:** This is a powerful placebo-like test within the treatment group. It is more consistent with a causal minimum wage effect than with a generic NJ economic boom.
-- **Tags:** [diff-in-diff, dose-response, identification]
-
-- **Claim/Concept:** Fast-food restaurants may pass minimum wage costs through to consumer prices rather than reducing employment.
-- **Evidence:** Card & Krueger 1994, Table 6 — NJ restaurants increased meal prices by approximately 4% relative to PA.
-- **My Commentary:** Price pass-through is consistent with both competitive and monopsony models. The combination of no employment decline plus price increase is more consistent with monopsony or a model with product market power.
-- **Tags:** [minimum-wage, price-pass-through, monopsony]
-
-- **Claim/Concept:** The parallel trends assumption in a two-period DiD cannot be directly tested — it must be argued on substantive grounds.
-- **Evidence:** Card & Krueger 1994 implicitly assumes NJ and PA fast-food employment would have trended identically absent the minimum wage change. With only two time periods, no pre-trend test is possible.
-- **My Commentary:** This is the paper's most vulnerable assumption. Later work (e.g., Dube, Lester, and Reich 2010) uses longer panels with event-study designs to directly assess pre-trends in contiguous border counties.
-- **Tags:** [parallel-trends, diff-in-diff, identification-assumption]
+**Note on economic vs. statistical significance**: The positive point estimate of 2.76 FTE represents roughly a 13% increase relative to the PA control group's employment decline. However, the confidence interval includes effects ranging from approximately +0.1 to +5.5, so the data are also consistent with a very small positive effect or near-zero effect. The key finding is the *absence* of the predicted negative effect, not necessarily the presence of a positive one.
 
 ---
 
-## Literature Review Integration
+## Critical Appraisal
 
-### Critical Appraisal Summary
-- **Internal validity:** Strong for a natural experiment of its era. The NJ/PA comparison is plausible given geographic proximity. The within-NJ dose-response check strengthens the case. However, the two-period design prevents formal pre-trend testing, and the lack of clustered SEs by region is a weakness by modern standards.
-- **Construct validity:** FTE employment constructed from phone surveys is reasonable but imperfect. The 0.5 weighting for part-time workers is an assumption, and managers' phone-reported headcounts may contain measurement error. The Neumark-Wascher payroll data challenge directly questions construct validity.
-- **External validity:** Limited to fast food, one state, one time period, and one modest ($0.80) minimum wage increase. Results may not generalize to larger increases, other industries, other labor markets, or periods with different macroeconomic conditions.
-- **Reproducibility:** Original survey data have been made available. The analysis is straightforward (means comparisons, simple OLS). Multiple replications and extensions exist. However, the BLS data reanalysis in Card and Krueger (2000) partly supersedes the original survey data results.
+### Claims and Scope
 
-### Contribution Map
-- **Strands claimed:**
-  1. **Minimum wage and employment** — the paper directly enters the decades-old debate about whether minimum wages reduce employment, providing the first large-scale natural experiment evidence against the competitive model prediction.
-  2. **Natural experiments in economics** — alongside Angrist (1990) and other early natural experiment papers, Card and Krueger helped establish the "credibility revolution" methodology of using policy variation as quasi-random treatment assignment.
-  3. **Monopsony in labor markets** — the results are consistent with monopsonistic labor markets where firms have wage-setting power, reviving a theoretical strand that had been largely dormant since Robinson (1933).
-- **Closest comparisons:** Brown, Gilroy, and Kohen (1982) — the canonical pre-1994 survey of minimum wage studies finding consensus negative employment effects; Katz and Krueger (1992) — earlier Card/Krueger study of the 1991 federal minimum wage increase in Texas fast food.
-- **Marginal contribution:** First study to use a clean state-border natural experiment with establishment-level data to estimate minimum wage employment effects. Previous studies relied on time-series variation or cross-state correlations, which are more vulnerable to confounding.
-- **Organizing principle used:** By finding — the paper positions itself against the prevailing "consensus" of negative employment effects and frames the contribution as a credible challenge to that consensus.
+- **Exact claim**: No evidence that the NJ minimum wage increase reduced fast-food employment; point estimate is positive.
+- **Scope**: Fast-food industry in one state (NJ), one wage increase, short-run (8 months).
+- **Counterclaim ruled out**: The standard competitive model prediction that a binding minimum wage reduces employment is not supported in this setting.
 
-### Gap Analysis
-| Gap Type | Description | Testable Next Step |
-|---|---|---|
-| Boundary | Results are specific to fast food in NJ in 1992. Do they hold for other industries, other states, larger minimum wage increases, or different macroeconomic conditions? | Replicate the design in other state border pairs and industries using longer panels (see Dube, Lester, and Reich 2010). |
-| Mechanism | The paper documents the employment effect (or lack thereof) but does not definitively distinguish between monopsony, price pass-through, efficiency wages, or reduced turnover as the mechanism. Why don't firms cut employment? | Test for monopsony directly by estimating firm-level labor supply elasticities (see Manning 2003; Azar, Marinescu, and Steinbaum 2022). |
-| Measurement | FTE employment from phone surveys may contain measurement error. The Neumark-Wascher challenge using payroll data raises the possibility that the null result is an artifact of noisy data. | Re-estimate using administrative payroll or unemployment insurance records, which are less subject to reporting error. |
-| Design | Two-period DiD prevents testing parallel trends and limits analysis of dynamic effects. No ability to assess whether the employment effect is immediate or develops over time. | Use event-study designs with multiple pre- and post-periods (as later papers do). Apply modern staggered DiD methods (Callaway and Sant'Anna 2021) to multi-state minimum wage variation. |
+### Assumptions and Logic
 
-### Citation Seeds
-**Backward (this paper cites — I should read):**
-1. Brown, Gilroy, and Kohen (1982), "The Effect of the Minimum Wage on Employment and Unemployment" — **why:** the canonical pre-1994 survey establishing the "consensus" that minimum wages reduce employment by 1–3%. Card & Krueger are explicitly challenging this consensus.
-2. Katz and Krueger (1992), "The Effect of the Minimum Wage on the Fast-Food Industry" — **why:** earlier companion study using the 1991 federal minimum wage increase in Texas; establishes the survey methodology that Card & Krueger extend.
-3. Neumark and Wascher (1992), "Employment Effects of Minimum and Subminimum Wages: Panel Data on State Minimum Wage Laws" — **why:** contemporaneous study finding negative employment effects using state panel data; represents the opposing view in the minimum wage debate.
+| Assumption | Explicit? | Testable? | Assessment |
+|---|---|---|---|
+| Parallel trends (absent treatment, NJ and PA employment would move together) | Implicit | Partially -- authors show similar pre-treatment levels and trends in wages | Plausible given geographic proximity, but no multi-period pre-trend test |
+| No spillovers from NJ to PA | Implicit | Difficult | Some PA restaurants near the border could have gained workers fleeing NJ jobs or lost customers to cheaper NJ restaurants -- not discussed |
+| SUTVA (no interference between units) | Implicit | No | Fast-food chains may reallocate employment across restaurants; franchise/corporate decisions may not be independent |
+| Measurement validity (FTE captures true employment) | Explicit | Yes | Authors discuss and test alternative FTE definitions; results robust |
 
-**Forward (who cites this — search for):**
-- Google Scholar: `cites:CardKrueger1994` or `"Card and Krueger" minimum wage employment` — over 6,000 citations as of 2025
-- Key follow-ups to prioritize:
-  - Neumark and Wascher (2000) — direct challenge using payroll data
-  - Card and Krueger (2000) — rebuttal using BLS data
-  - Dube, Lester, and Reich (2010) — contiguous border county design
-  - Cengiz, Dube, Lindner, and Zipperer (2019) — bunching estimator across all US minimum wage changes
-  - Harasztosi and Lindner (2019) — Hungarian minimum wage increase with admin data
+### Validity Assessment
 
-### Position in Literature Map
-- **Cluster:** Minimum wage and labor demand; credibility revolution / natural experiments in labor economics
-- **Role:** Foundational — this is the single most influential paper in the modern minimum wage debate and a canonical example of natural experiment methodology in economics
-- **Builds on:** Brown, Gilroy, and Kohen (1982); Stigler (1946) competitive model; Robinson (1933) monopsony theory; Katz and Krueger (1992)
-- **Extended by:** Dube, Lester, and Reich (2010); Cengiz et al. (2019); Neumark and Wascher (2000, 2008); Manning (2003); Autor, Manning, and Smith (2016)
+- **Internal validity**: Reasonably strong for a natural experiment of its era. Geographic proximity of treatment and control groups limits confounding from regional shocks. However, the single policy change means the estimate captures one realization of the treatment effect, and there is no pre-trend analysis in the modern event-study sense.
+- **Construct validity**: FTE employment is a standard measure; however, it does not capture hours adjustments within FTE categories, potential quality-of-hire changes, or substitution between worker types.
+- **External validity**: Limited. Fast-food is a specific industry with high turnover, low margins, and price-setting power. Results may not generalize to other sectors, larger wage increases, or different labor market conditions.
+
+### Reproducibility
+
+- **Data**: Survey data collected by authors; later made available. The BLS conducted a follow-up survey that partially replicated the data collection.
+- **Code**: Not available (pre-replication era). Methodology is simple enough to reproduce from published tables.
+- **Replication**: Neumark and Wascher (2000) challenged results using BLS payroll data, finding negative employment effects. Card and Krueger (2000) responded with updated analysis showing original results hold.
+
+### Citations and Positioning
+
+- Appropriately cites Brown, Gilroy, and Kohen (1982) as the prior consensus survey.
+- Cites Katz and Krueger (1992) as a precursor using the same NJ wage increase with different data.
+- Does not cite any monopsony models (Manning's textbook came later in 2003), though the results are consistent with monopsonistic competition.
 
 ---
 
-## Follow-Up Actions
-- [ ] Read: Neumark and Wascher (2000) — "The Effect of New Jersey's Minimum Wage Increase on Fast-Food Employment: A Reevaluation Using Payroll Records"
-- [ ] Read: Dube, Lester, and Reich (2010) — "Minimum Wage Effects Across State Borders"
-- [ ] Read: Cengiz, Dube, Lindner, and Zipperer (2019) — "The Effect of Minimum Wages on Low-Wage Jobs"
-- [ ] Read: Manning (2003) — *Monopsony in Motion* (for theoretical framework explaining the result)
-- [ ] Check: Download Card and Krueger's original dataset and replicate Table 3 as a DiD exercise
-- [ ] Idea: Use modern staggered DiD methods (Callaway-Sant'Anna, Sun-Abraham) to revisit the NJ/PA setting with longer panel data
-- [ ] Data: Explore Quarterly Census of Employment and Wages (QCEW) for NJ/PA county-level fast-food employment around 1992
+## Contribution Map
+
+Card and Krueger (1994) positions itself within three strands of literature:
+
+### Strand 1: Minimum Wage Employment Effects (broadest)
+
+The dominant prior was Brown, Gilroy, and Kohen (1982), which surveyed time-series studies and established the "consensus" that a 10% minimum wage increase reduces teen employment by 1-3%. Card and Krueger challenge this using a quasi-experimental design rather than aggregate time series. Their contribution: **first large-scale natural experiment on minimum wages**, providing identification that avoids the confounding inherent in national time-series regressions.
+
+### Strand 2: Natural Experiments and Credibility in Labor Economics
+
+Part of the broader "credibility revolution" (later named by Angrist and Pischke 2010). Card and Krueger demonstrate that state-level policy variation can be exploited for credible causal inference. Precursors include Card (1990) on the Mariel boatlift and Meyer and Katz (1990) on unemployment insurance. Their contribution: **a clean diff-in-diff design using a sharp policy discontinuity** that became a template for subsequent minimum wage studies.
+
+### Strand 3: Monopsony and Labor Market Power (implicit)
+
+While Card and Krueger (1994) do not formally invoke monopsony models, their results are inconsistent with perfect competition and consistent with employer wage-setting power. This strand was formalized later by Manning (2003) and Burdett and Mortensen (1998). Their contribution (recognized ex post): **empirical evidence motivating renewed interest in monopsonistic labor market models**.
+
+**Organizing principle**: Card and Krueger organize by methodology (case study vs. time series), arguing their natural experiment design is more credible than the prior regression-based literature.
 
 ---
-*Generated by Econ Paper Reader & Lit Review Tool — Read Mode*
-*Methodology: Keshav Three-Pass + Angrist/Pischke Design-Based Credibility*
+
+## Gap Analysis
+
+### Boundary Gaps
+
+- **Long-run effects**: The study captures only 8 months post-treatment. Longer-run adjustments (entry/exit, capital-labor substitution, automation) are not observed. Does the null employment effect persist at 2, 5, or 10 years?
+- **Larger wage increases**: The NJ increase was 18.8% ($0.80). Do results hold for larger increases (e.g., $15 minimum wage movements post-2012)?
+- **Other industries**: Results are for fast food only. Do they generalize to retail, hospitality, or manufacturing?
+
+### Mechanism Gaps
+
+- **Why no employment decline?** The paper documents the effect (or lack thereof) but does not pin down the mechanism. Candidates include: (a) monopsony power, (b) efficiency wages, (c) reduced turnover, (d) price pass-through to consumers, (e) demand stimulus from higher wages. Card and Krueger provide some evidence of price increases but do not formally test channels.
+- **Margin of adjustment**: If employment does not adjust, what does? Hours? Product quality? Non-wage benefits? Speed of service?
+
+### Measurement Gaps
+
+- **FTE vs. hours**: FTE employment masks within-category hours adjustments. A restaurant could maintain headcount but cut hours per worker.
+- **Self-reported data**: Telephone surveys introduce measurement error. Neumark and Wascher (2000) argue payroll data gives different results, highlighting the sensitivity to data source.
+- **Entry and exit**: The survey covers existing restaurants only. If the minimum wage caused marginal restaurants to close or deterred new entry, the surviving sample would show an upward bias.
+
+### Design Gaps
+
+- **Single treatment event**: One state, one time, one policy change. The DiD estimate captures one realization, making it hard to assess external validity or conduct inference about the general effect of minimum wages.
+- **No pre-trend test**: Modern event-study designs would show multiple pre-treatment periods to validate parallel trends. Card and Krueger have only one pre-period.
+- **Geographic spillovers**: PA restaurants near the NJ border may be affected by the NJ policy (cross-border shopping, worker migration), biasing the control group.
+
+**Actionable next step**: Apply the bunching estimator from Cengiz et al. (2019) to CPS or QWI microdata for the NJ 1992 episode to test whether the null employment effect reflects genuine labor demand insensitivity or measurement limitations in the original survey data.
+
+---
+
+## Citation Seeds
+
+### Backward (key references this paper builds on)
+
+| Citekey | Relevance |
+|---|---|
+| Brown, Gilroy, and Kohen (1982) | Prior consensus survey: 10% MW increase reduces teen employment by 1-3%. Card and Krueger's main foil. |
+| Katz and Krueger (1992) | Earlier study using the *same* NJ minimum wage increase with Texas fast-food data as control. Found similar null employment effects. Card and Krueger extend with a better control group (adjacent PA). |
+| Card (1992) | Card's study of the 1988 California minimum wage increase using a similar natural experiment approach. Part of the same research agenda. |
+
+### Forward (key papers that build on this work)
+
+| Citekey | Relevance |
+|---|---|
+| Neumark and Wascher (2000) | Direct challenge using BLS payroll data instead of survey data. Find negative employment effects. Sparked a decade-long data debate. |
+| Dube, Lester, and Reich (2010) | Extend the border-comparison design to the full US, using contiguous cross-state county pairs. Find minimal disemployment effects nationally, supporting Card and Krueger. |
+| Cengiz, Dube, Lindner, and Zipperer (2019) | Use a bunching estimator across 138 state-level MW changes (1979-2016). Find employment effects near zero overall, with clear wage compression at the bottom. Most comprehensive test of the Card-Krueger finding. |
+
+---
+
+## Reading Metadata
+
+| Parameter | Value |
+|---|---|
+| **Depth** | Working understanding (second-pass) |
+| **Time spent** | ~45 minutes |
+| **Confidence in summary** | High -- this is one of the most discussed papers in labor economics; claims are well-documented across the literature |
+| **Follow-up needed** | Read Neumark and Wascher (2000) response and Card and Krueger (2000) reply; read Dube et al. (2010) for the extended border design |

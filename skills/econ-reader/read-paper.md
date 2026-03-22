@@ -1,24 +1,11 @@
-# Skill: Economic Paper Reader — Read Mode
+# Skill: Economic Paper Reader & Knowledge Distillation
 
 ## Description
-A skill for academic economics workflow:
+A two-mode skill for academic economics workflow:
 - **`read` mode**: Reads economics papers from local PDFs, web URLs, or directories. Performs structured three-pass knowledge distillation. Outputs paper snapshot markdown files to a Git-tracked knowledge base.
+- **`review` mode**: Synthesizes multiple paper snapshot files into a draft literature review — either a standalone JEL-style survey or an embedded contribution section for an empirical paper. Uses economics-specific conventions (Cochrane/Bellemare/Angrist-Pischke methodology).
 
-## Accepted Input Formats
-
-### Read Mode
-- **Local PDF**: Absolute or relative path to a `.pdf` file (e.g., `./papers/angrist2010.pdf`)
-- **Web URL**: Direct link to a paper (e.g., `https://www.nber.org/papers/w12345.pdf`)
-- **Local directory**: Path to a folder containing multiple `.pdf` files for batch processing (e.g., `./papers/`)
-
-## When to Use This Skill
-
-### Read Mode — activate when the user says:
-- "Read this paper" / "Analyze this paper" / "Distill this paper"
-- "Run the paper reader on [path/URL]"
-- "Knowledge distill [path/URL]"
-- "Summarize this economics paper"
-- Process any academic PDF with structured output
+Both modes share the same knowledge base directory structure and output plain markdown files ready for GitHub.
 
 ---
 
@@ -162,9 +149,9 @@ Record this in the output as the **Contribution Map** — this becomes raw mater
 
 ### Step 7: Generate Output File
 
-Save to `./literature/` directory (create if needed).
+Save to `./literature/` directory (create if needed):
 
-Output template: see `templates/paper-snapshot.md`.
+Output template: see `templates/paper-snapshot.md`
 
 ### Step 8: Save and Confirm
 
@@ -185,81 +172,21 @@ If batch processing, also generate `./literature/_index.md` with a table of all 
 
 ---
 
-# KNOWLEDGE BASE MANAGEMENT
+## Accepted Input Formats (Read Mode)
+- **Local PDF**: Absolute or relative path to a `.pdf` file (e.g., `./papers/angrist2010.pdf`)
+- **Web URL**: Direct link to a paper (e.g., `https://www.nber.org/papers/w12345.pdf`)
+- **Local directory**: Path to a folder containing multiple `.pdf` files for batch processing (e.g., `./papers/`)
 
-## Repository Structure
-Both modes share this directory structure (created automatically on first run):
-
-```
-econ-knowledge-base/
-├── README.md                    # Dashboard: topic map + reading stats
-├── references.bib               # BibTeX bibliography (append on each read)
-├── literature/                  # One file per paper (Read Mode output)
-│   ├── Card1994-MinimumWages.md
-│   ├── Chetty2009-SalienceTaxation.md
-│   └── _index.md               # Auto-generated table of all papers
-├── notes/                       # Atomic permanent notes (your ideas)
-│   ├── monopsony-explains-mw-puzzle.md
-│   └── did-requires-parallel-trends.md
-├── topics/                      # Hub/structure notes by theme
-│   ├── labor-economics.md
-│   └── public-finance.md
-├── projects/                    # Writing projects
-│   └── lit-review/
-│       ├── contribution-section-draft.md
-│       ├── survey-draft.md
-│       └── literature-table.md
-├── templates/                   # Reusable note templates
-│   ├── literature-note-template.md
-│   └── permanent-note-template.md
-└── fleeting/                    # Quick captures to process later
-```
-
-## Conventions
-- **Filenames**: `AuthorYear-ShortTitle.md` (e.g., `Card1994-MinimumWages.md`)
-- **Links**: Standard markdown `[text](./relative/path.md)` — NOT wiki-links (GitHub doesn't render them)
-- **Tags**: In YAML frontmatter, use lowercase with hyphens: `[labor, minimum-wage, diff-in-diff]`
-- **Citations in drafts**: Use pandoc-citeproc format `[@Card1994]` for compilation to PDF/Word
-- **BibTeX**: Append entries to `references.bib` on each paper read; use `techreport` type for working papers
-
-## Useful Commands
-```bash
-# Search across all notes
-rg "minimum-wage" ./literature/
-
-# Find all papers using DiD
-rg "methodology: diff" ./literature/
-
-# Find high-relevance papers
-rg "relevance: [45]" ./literature/
-
-# Compile a draft to PDF with citations
-pandoc ./projects/lit-review/survey-draft.md \
-  --citeproc --bibliography=references.bib \
-  --csl=chicago-author-date.csl -o survey-draft.pdf
-
-# Update the paper index
-ls ./literature/*.md | grep -v _index | while read f; do
-  head -10 "$f" | grep -E "^(title|citekey|methodology):"
-done > ./literature/_index.md
-```
+## When to Use (Read Mode)
+- "Read this paper" / "Analyze this paper" / "Distill this paper"
+- "Run the paper reader on [path/URL]"
+- "Knowledge distill [path/URL]"
+- "Summarize this economics paper"
+- Process any academic PDF with structured output
 
 ---
 
-# IMPORTANT METHODOLOGY NOTES
-
-## For Read Mode
-- Always write coefficients in PLAIN LANGUAGE, not just numbers
-- Always distinguish statistical significance from economic significance
-- Always note what authors claim vs. what design actually supports
-- Flag p-hacking risks explicitly
-- Theoretical papers: interrogate assumptions, not math validity
-- Empirical papers: interrogate identification, not prose quality
-- Default depth is "working understanding"
-
----
-
-# EXAMPLE INVOCATIONS
+# EXAMPLE INVOCATIONS (Read Mode)
 
 ```bash
 # Single local PDF
@@ -277,3 +204,29 @@ done > ./literature/_index.md
 # Skim only
 "Quick skim ./papers/survey_paper.pdf"
 ```
+
+---
+
+# IMPORTANT METHODOLOGY NOTES
+
+## For Read Mode
+- Always write coefficients in PLAIN LANGUAGE, not just numbers
+- Always distinguish statistical significance from economic significance
+- Always note what authors claim vs. what design actually supports
+- Flag p-hacking risks explicitly
+- Theoretical papers: interrogate assumptions, not math validity
+- Empirical papers: interrogate identification, not prose quality
+- Default depth is "working understanding"
+
+---
+
+## Authorities Encoded in This Skill
+- **Keshav (2007)**: Three-pass reading framework
+- **Angrist & Pischke (2010)**: Credibility revolution, design-based identification
+- **Cochrane (2005)**: Writing tips — focus on 2–3 closest papers, cut citation padding
+- **Bellemare (2020)**: Middle bits formula — 5–7 studies, one contribution paragraph
+- **Head (UBC)**: Introduction formula — Hook → Question → Antecedents → Value-Added → Roadmap
+- **JEL Editorial Guidelines**: Synthesis as crucial ingredient, point of view, selectivity
+- **JES Author Guidelines**: 10,000–15,000 word surveys, creative synthesis not catalogue
+- **ASA Statement on p-Values**: Effect sizes and uncertainty over binary significance
+- **AEA Data Policy**: Reproducibility and transparency standards

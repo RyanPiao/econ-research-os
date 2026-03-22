@@ -74,3 +74,18 @@
 ```
 
 6. Save to `./projects/[project-name]/search-results-[topic]-[date].md`
+
+## API Notes
+- **Semantic Scholar**: Free, no key required for basic searches. Rate limit ~100 requests/5 min. For heavier use, request an API key at https://www.semanticscholar.org/product/api
+- **Google Scholar**: No official API. Use web search as proxy. Respect rate limits.
+- **NBER/SSRN/RePEc**: No API. Web search + web fetch for results pages.
+- **Scopus/WoS**: Require institutional access. Generate search strings for manual use at Northeastern library portal.
+
+## Example Invocations
+```bash
+/paper-search minimum wage employment effects DiD
+/citation-chase Card1994-MinimumWages
+/deep-search "market power and markups in US manufacturing"
+/reading-list
+/paper-search --jel L11,L13 --years 2020-2026 --method structural
+```

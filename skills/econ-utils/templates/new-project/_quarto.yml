@@ -1,23 +1,20 @@
 project:
   type: book
   output-dir: _book
+
 book:
-  title: "[Book Title]"
+  title: "[Project Name]"
   author: "[Author Name]"
   date: today
   chapters:
     - index.qmd
     - chapters/01-introduction.qmd
+
 bibliography: references.bib
 csl: chicago-author-date.csl
+
 format:
   html:
     theme: cosmo
-    code-fold: true
-    code-tools: true
   pdf:
     documentclass: scrreprt
-    keep-tex: true
-    number-sections: true
-execute:
-  freeze: auto

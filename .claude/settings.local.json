@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(///192.168.1.15/ZimaOS-HD/Documents/econ-research-os/**)",
+      "Read(///192.168.1.15/ZimaOS-HD/Documents/**)",
+      "Bash(mkdir -p skills/econ-think/templates skills/econ-discover/templates skills/econ-reader/templates skills/econ-analyze/templates skills/econ-synthesize/templates skills/econ-write/templates skills/econ-verify/templates skills/econ-utils/templates/new-project docs examples backup)",
+      "Bash(mv econ-think.md econ-discover.md econ-paper-reader.md econ-analyze.md econ-synthesize.md econ-write.md econ-verify.md econ-utils.md \"All 8 SKILL.md Router Files + CLAUDE.md Template.md\" backup/)",
+      "Bash(git config:*)",
+      "Bash(rm -rf skills/econ-think/* skills/econ-discover/* skills/econ-reader/* skills/econ-analyze/* skills/econ-synthesize/* skills/econ-write/* skills/econ-verify/* skills/econ-utils/* docs/* examples/*)",
+      "Bash(mkdir -p skills/econ-think/templates skills/econ-discover/templates skills/econ-reader/templates skills/econ-analyze/templates skills/econ-synthesize/templates skills/econ-write/templates skills/econ-verify/templates skills/econ-utils/templates/new-project docs examples)",
+      "Read(///192.168.1.15/ZimaOS-HD/Documents/econ-research-os/skills/**)",
+      "Read(///192.168.1.15/ZimaOS-HD/Documents/econ-research-os/skills/econ-synthesize/**)",
+      "Read(///192.168.1.15/ZimaOS-HD/Documents/econ-research-os/skills/econ-utils/**)",
+      "Read(///192.168.1.15/ZimaOS-HD/Documents/econ-research-os/skills/econ-utils/templates/**)",
+      "Bash(mkdir -p \"//192.168.1.15/ZimaOS-HD/Documents/econ-research-os/docs/\")",
+      "Read(///192.168.1.15/ZimaOS-HD/Documents/econ-research-os/skills/econ-reader/**)"
+    ]
+  }
+}

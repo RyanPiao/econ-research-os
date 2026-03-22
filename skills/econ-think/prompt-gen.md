@@ -168,7 +168,10 @@ Please help me critically appraise this paper:
 4. Save to `./projects/[project-name]/deep-research-prompts.md`
 5. Inform user: "Prompts saved. Copy-paste into each platform. Results can be fed back into /read-paper or /paper-search."
 
-## Example Invocation
+## Example Invocations
 ```bash
+/brainstorm minimum wage effects on small business formation
+/research-plan "Effect of occupational licensing on labor mobility"
 /prompt-gen IO market concentration and consumer welfare
+/scope-and-outline "Applied Econometrics: A Practitioner's Guide" --chapters 12
 ```

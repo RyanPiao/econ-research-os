@@ -1,69 +1,55 @@
 ---
-chapter: N
-title: "Chapter Title"
-status: first-draft
-word_count: 0
-equations: 0
-figures: 0
-tables: 0
-code_blocks: 0
-citations: []
-cross_refs_to: []
-cross_refs_from: []
-last_edited: YYYY-MM-DD
+title: "Chapter [N]: [Title]"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+  pdf:
+    number-sections: true
 ---
 
-# Chapter N: Title
+# Chapter [N]: [Title]
 
-## N.1 Opening hook
-
+## [N].1 Opening hook
 [A real-world causal question, empirical puzzle, or policy dilemma
 that motivates the entire chapter. 1-2 paragraphs. Name specific
 people, places, numbers. Make the reader care.]
 
-## N.2 The intuition
-
+## [N].2 The intuition
 [Plain-language explanation of the core idea. Why does this method
 exist? What problem does it solve that simpler approaches can't?
 Use analogies, thought experiments, or causal diagrams. NO equations
 in this section.]
 
-## N.3 The canonical example
-
+## [N].3 The canonical example
 [One empirical paper that perfectly illustrates the method.
 Tell the story: what was the question, what was the clever design,
 what did they find? Reference the specific tables/figures.]
 
-## N.4 The formal framework
-
+## [N].4 The formal framework
 [Mathematical presentation. Start with the simplest version
 (two-period, two-group) before the general case. Every equation
 gets a full walk-through. Build from the intuition section —
 the reader should recognize the math as formalizing what they
 already understand.]
 
-## N.5 Implementation
-
+## [N].5 Implementation
 [How to actually do this. Code in R/Python/Stata showing the
 method applied to the canonical example's data (or simulated data).
 Walk through the code, explain the output, connect back to the
 formal framework.]
 
-## N.6 Extensions and practical issues
-
+## [N].6 Extensions and practical issues
 [Variations, diagnostics, common mistakes, recent methodological
 advances. When does the method break? What assumptions are people
 most often wrong about?]
 
-## N.7 Further applications
-
+## [N].7 Further applications
 [2-3 additional empirical examples from different fields.
 Brief treatment — show the method's breadth.]
 
-## N.8 Summary and key takeaways
-
+## [N].8 Summary and key takeaways
 [Numbered list of 5-7 key points. What must the reader remember?]
 
-## N.9 Exercises
-
+## [N].9 Exercises
 [3-5 conceptual questions + 2-3 applied problems with data]

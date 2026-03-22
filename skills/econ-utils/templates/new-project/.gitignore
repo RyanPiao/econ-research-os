@@ -1,0 +1,11 @@
+_book/
+*.pdf
+*.docx
+*.html
+*_files/
+.quarto/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/raw/
+.env

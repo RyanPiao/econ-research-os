@@ -1,0 +1,7 @@
+# Preface {.unnumbered}
+
+This is a [project description placeholder].
+
+## How to use this book
+
+[Instructions for the reader.]
